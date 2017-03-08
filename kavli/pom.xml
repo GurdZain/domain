@@ -7,6 +7,18 @@
     <groupId>domain</groupId>
     <artifactId>domain</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
@@ -35,6 +47,13 @@
             <artifactId>spring-jdbc</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.mysql.jdbc/com.springsource.com.mysql.jdbc -->
+        <dependency>
+            <groupId>com.mysql.jdbc</groupId>
+            <artifactId>com.springsource.com.mysql.jdbc</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+
 
 
     </dependencies>

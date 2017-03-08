@@ -11,8 +11,8 @@ package com.kavli.core.exception;
  *
  */
 
-import com.kavli.core.Constant.ErrorDescription;
-import com.kavli.core.Constant.ExceptionType;
+import com.kavli.core.constant.ErrorDescription;
+import com.kavli.core.constant.ExceptionType;
 import com.kavli.core.vo.json.ErrorVO;
 
 import java.io.Serializable;

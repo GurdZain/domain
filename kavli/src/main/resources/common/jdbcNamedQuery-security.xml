@@ -1,0 +1,32 @@
+<xml>
+    <map>
+        <entry>
+            <key>
+                <value>GET_LAST_QUERY_BY_ID</value>
+            </key>
+            <value><![CDATA[
+                    SELECT * FROM `last_query` q WHERE q.id=:id
+             ]]></value>
+        </entry>
+        <entry>
+            <key>
+                <value>UPDATE_LAST_DOMAIN</value>
+            </key>
+            <value><![CDATA[
+                    INSERT INTO last_query (id, name)
+                    VALUES (:id, :name)
+                    ON DUPLICATE KEY UPDATE
+                    name=:name
+             ]]></value>
+        </entry>
+        <entry>
+            <key>
+                <value>INSERT_VALID_DOMAIN</value>
+            </key>
+            <value><![CDATA[
+                    INSERT INTO valid_host (name, create_time)
+                    VALUES (:name, :create_time)
+             ]]></value>
+        </entry>
+    </map>
+</xml>

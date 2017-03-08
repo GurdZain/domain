@@ -1,4 +1,4 @@
-package com.kavli.core.Constant;
+package com.kavli.core.constant;
 /**
  *=====================================================================
  * ACP Error Handling Constants

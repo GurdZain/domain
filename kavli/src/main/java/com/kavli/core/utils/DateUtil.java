@@ -11,12 +11,10 @@ package com.kavli.core.utils;
  *
  */
 
-import com.maxFun.core.constant.ErrorDescription;
-import com.maxFun.core.constant.ExceptionType;
-import com.maxFun.core.exception.UtilityException;
-import com.maxFun.core.vo.json.ErrorVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.kavli.core.constant.ErrorDescription;
+import com.kavli.core.constant.ExceptionType;
+import com.kavli.core.exception.UtilityException;
+import com.kavli.core.vo.json.ErrorVO;
 
 import java.sql.Timestamp;
 import java.text.DateFormatSymbols;
@@ -25,11 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static com.maxFun.core.constant.CoreUtilConst.DATE_FORMAT_WITH_NO_TIME;
-import static com.maxFun.core.constant.CoreUtilConst.DATE_FORMAT_WITH_TIME;
+import static com.kavli.core.constant.CoreUtilConst.DATE_FORMAT_WITH_NO_TIME;
+import static com.kavli.core.constant.CoreUtilConst.DATE_FORMAT_WITH_TIME;
+
 
 public class DateUtil {
-    private static Logger mLogger = LoggerFactory.getLogger(DateUtil.class.getName());
     /**yyyy-MM-dd HH:mm:ss*/
 	public static SimpleDateFormat sdf_bidStatus = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	/**yyyy-MM-dd HH:mm:ss.SSS*/
@@ -100,9 +98,9 @@ public class DateUtil {
 			}
 			return date;
 	    } catch (ParseException ex) {
-			mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
+			/*mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
 					      "undeployQueue", ExceptionType.EXCEPTION_UTILITY,
-					      ex.getMessage()));
+					      ex.getMessage()));*/
 			throw new UtilityException(ExceptionType.EXCEPTION_UTILITY,
 					                   new ErrorVO(ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ex.getMessage()));
 	    }
@@ -186,8 +184,8 @@ public class DateUtil {
 				return sdf.parse(dateStr);
 			} catch (ParseException e) {
 				String errMsg = "Can't find parse the '" + dateStr + "' to date' with format" + sdf.toPattern()	+ ".";
-				mLogger.error(MessageFormattor.errorFormat( DateUtil.class.getName(), "parseStringToDate",
-						ExceptionType.EXCEPTION_UTILITY, errMsg));
+				/*mLogger.error(MessageFormattor.errorFormat( DateUtil.class.getName(), "parseStringToDate",
+						ExceptionType.EXCEPTION_UTILITY, errMsg));*/
 //			    throw new UtilityException(ExceptionType.EXCEPTION_UTILITY,
 //					                   ErrorVOGenerator.genarateErrorVO("", "",  "", errMsg));
 				return null;
@@ -236,7 +234,7 @@ public class DateUtil {
 			else
 				result=(new Timestamp((new SimpleDateFormat(DATE_FORMAT_WITH_NO_TIME).parse(dateRequest .toString())).getTime()));
 			}catch(ParseException ex){
-				mLogger.error("Couldn't parse date"+ ex.getMessage());
+				//mLogger.error("Couldn't parse date"+ ex.getMessage());
 				
 			}
 		}
@@ -389,8 +387,8 @@ public class DateUtil {
     	try {
 			return calculateAge(date_sdf_statics.parse(birthdayStr));
 		} catch (ParseException ex) {
-			mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
-				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, ex.getMessage()));
+			/*mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
+				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, ex.getMessage()));*/
 			throw new UtilityException(ExceptionType.EXCEPTION_UTILITY,
 				                   new ErrorVO(ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ex.getMessage()));
 		}
@@ -410,8 +408,8 @@ public class DateUtil {
 		
 		if (befoter.getTimeInMillis() > nowCalendar.getTimeInMillis()) {
 			String errMsg = "birthday is not greater than the current time";
-			mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
-				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, errMsg));
+			/*mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
+				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, errMsg));*/
 			throw new UtilityException(ExceptionType.EXCEPTION_UTILITY,
 				                   new ErrorVO(ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ErrorDescription.ERR_CD_UT_DATE_CONVERSION, errMsg));
 		}
@@ -441,8 +439,8 @@ public class DateUtil {
 		
 		if (befoter.getTimeInMillis() > nowCalendar.getTimeInMillis()) {
 			String errMsg = "birthday is not greater than the current time";
-			mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
-				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, errMsg));
+			/*mLogger.error(MessageFormattor.errorFormat(DateUtil.class.getName(),
+				      "claculateAge", ExceptionType.EXCEPTION_UTILITY, errMsg));*/
 			throw new UtilityException(ExceptionType.EXCEPTION_UTILITY,
 				                   new ErrorVO(ErrorDescription.ERR_CD_UT_DATE_CONVERSION, ErrorDescription.ERR_CD_UT_DATE_CONVERSION, errMsg));
 		}

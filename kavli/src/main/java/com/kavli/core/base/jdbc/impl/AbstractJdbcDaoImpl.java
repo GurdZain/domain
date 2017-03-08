@@ -4,8 +4,8 @@ package com.kavli.core.base.jdbc.impl;
  * Created by Administrator on 2017/3/7.
  */
 
-import com.kavli.core.Constant.ErrorDescription;
-import com.kavli.core.Constant.ExceptionType;
+import com.kavli.core.constant.ErrorDescription;
+import com.kavli.core.constant.ExceptionType;
 import com.kavli.core.base.jdbc.AbstractJdbcDao;
 import com.kavli.core.base.jdbc.DataSourceLauncher;
 import com.kavli.core.exception.DaoException;
@@ -29,6 +29,10 @@ import java.util.Map;
 public abstract class AbstractJdbcDaoImpl extends DataSourceLauncher
         implements AbstractJdbcDao {
 
+    public AbstractJdbcDaoImpl() {
+
+    }
+
     /**
      * @param query
      * @param paramMap
@@ -41,7 +45,7 @@ public abstract class AbstractJdbcDaoImpl extends DataSourceLauncher
         String errorDescription = "";
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
         try {
-            resultList = this.queryForList(query,
+            resultList = this.getNamedParameterJdbcTemplate().queryForList(query,
                     paramMap);
         } catch (DataAccessException e) {
             errorDescription = "Failed to excute the query " + query
@@ -82,7 +86,7 @@ public abstract class AbstractJdbcDaoImpl extends DataSourceLauncher
         int count = 0;
         String errorDescription = "";
         try {
-            count = this.update(query, paramMap);
+            count = this.getNamedParameterJdbcTemplate().update(query, paramMap);
         } catch (DataAccessException e) {
             errorDescription = "Failed to excute the query " + query
                     + " . The system error is :" + e.getMessage();
@@ -126,7 +130,7 @@ public abstract class AbstractJdbcDaoImpl extends DataSourceLauncher
         int count = 0;
         String errorDescription = "";
         try {
-            count = this.update(query, paramSource,
+            count = this.getNamedParameterJdbcTemplate().update(query, paramSource,
                     generatedKeyHolder);
         } catch (DataAccessException e) {
             errorDescription = "Failed to excute the query " + query
@@ -255,7 +259,7 @@ public abstract class AbstractJdbcDaoImpl extends DataSourceLauncher
         List<SqlParameter> outParameterList = new ArrayList<SqlParameter>();
         try {
             // Execute Stored Procedure using Jdbc Template
-            Map<String, Object> spResultMap = this.call(
+            Map<String, Object> spResultMap = this.getJdbcTemplate().call(
                     new CallableStatementCreator() {
                         public CallableStatement createCallableStatement(
                                 Connection con) throws SQLException {
