@@ -9,7 +9,8 @@ public class DomainResult {
     private String key;
     private String classKey;
     private String status;
-    private String price;
+    private Double price;
+    private Integer premium;
     private Date date;
 
     public String getKey() {
@@ -36,11 +37,11 @@ public class DomainResult {
         this.status = status;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -50,5 +51,13 @@ public class DomainResult {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getPremium() {
+        return premium;
+    }
+
+    public void setPremium(Integer premium) {
+        this.premium = premium;
     }
 }

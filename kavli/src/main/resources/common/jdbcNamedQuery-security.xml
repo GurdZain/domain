@@ -24,8 +24,8 @@
                 <value>INSERT_VALID_DOMAIN</value>
             </key>
             <value><![CDATA[
-                    INSERT INTO valid_host (name, create_time)
-                    VALUES (:name, :create_time)
+                    INSERT INTO valid_host (name, price, is_premium, create_time)
+                    VALUES (:name, :price, :is_premium, :create_time)
              ]]></value>
         </entry>
     </map>

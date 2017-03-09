@@ -43,6 +43,8 @@ public class DomainDaoImpl extends AbstractJdbcDaoImpl implements IDomainDao {
         String sqlStr = JdbcNameQuery.getQueryByName("INSERT_VALID_DOMAIN");
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("name", result.getClassKey());
+        paramMap.put("price", result.getPrice());
+        paramMap.put("is_premium", result.getPremium());
         paramMap.put("create_time", result.getDate());
         return this.executeJdbcUpdate(sqlStr, paramMap);
     }
