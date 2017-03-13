@@ -52,7 +52,7 @@ public class DoMainService implements IMainService{
                     }
                     last = generateString(last);
                     domainDao.updateLastDomain(1L, last);
-                    Thread.sleep(3000L);
+                    Thread.sleep(2000L);
                 } else {
                     System.out.println(htmlResult.errorInfo);
                 }
