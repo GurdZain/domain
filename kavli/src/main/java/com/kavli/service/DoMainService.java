@@ -1,6 +1,7 @@
 package com.kavli.service;
 
 import com.kavli.core.exception.DaoException;
+import com.kavli.core.utils.DateUtil;
 import com.kavli.dao.IDomainDao;
 import com.kavli.dao.impl.DomainDaoImpl;
 import com.kavli.domain.DomainResult;
@@ -27,7 +28,7 @@ public class DoMainService implements IMainService{
             }
             int index=0;
             while (index++ < 10000) {
-                System.out.println(index+":skip host:"+last+".com");
+                System.out.println(index+" "+ DateUtil.parseDateToString(new Date(), DateUtil.sdf_bidStatus)+":skip host:"+last+".com");
                 //JSONObject result = HttpUtils.getJsonHtml("http://cnz.co/domain-registration/domain.php?action=caajax&domain_name="+last+".com");
                 HttpUtils.HttpUtilsResult htmlResult = HttpUtils.getHtml("http://cnz.co/domain-registration/domain.php?action=caajax&domain_name="+last+".com");
                 if (htmlResult.errorCode == HttpUtils.HttpUtilsResult.ERR_NONE) {
