@@ -1,8 +1,6 @@
 package com.kavli.main;
 
 import com.kavli.service.DoMainService;
-import com.kavli.tools.HttpUtils;
-import net.sf.json.JSONObject;
 
 /**
  * Created by Administrator on 2017/3/7.
