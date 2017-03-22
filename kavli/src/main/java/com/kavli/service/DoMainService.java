@@ -34,19 +34,23 @@ public class DoMainService implements IMainService{
                 if (htmlResult.errorCode == HttpUtils.HttpUtilsResult.ERR_NONE) {
                     JSONObject result = JSONObject.fromObject(htmlResult.htmlBody);
 
-                    if (result != null  ) {
-                        if (result.get("status").equals("available")) {
-                            DomainResult newDomain = new DomainResult();
-                            newDomain.setDate(new Date());
-                            newDomain.setClassKey(last);
-                            if (result.getString("price") != null) {
-                                newDomain.setPrice(Double.valueOf(result.getString("price")));
+                    if (result != null) {
+                        if (result.get("status") != null) {
+                            if (result.get("status").equals("available")) {
+                                DomainResult newDomain = new DomainResult();
+                                newDomain.setDate(new Date());
+                                newDomain.setClassKey(last);
+                                if (result.getString("price") != null) {
+                                    newDomain.setPrice(Double.valueOf(result.getString("price")));
+                                }
+                                if (result.getString("is_premium") != null) {
+                                    newDomain.setPremium(result.getString("is_premium").equalsIgnoreCase("true") ? 1 : 0);
+                                }
+                                domainDao.insertNewDomain(newDomain);
+                                System.out.println("    get available host:" + last + ".com, price=" + newDomain.getPrice() + ",is_premium:" + (newDomain.getPremium() == 1));
                             }
-                            if (result.getString("is_premium") != null) {
-                                newDomain.setPremium(result.getString("is_premium").equalsIgnoreCase("true") ? 1 : 0);
-                            }
-                            domainDao.insertNewDomain(newDomain);
-                            System.out.println("    get available host:" + last + ".com, price=" + newDomain.getPrice() + ",is_premium:" + (newDomain.getPremium() == 1));
+                        } else {
+                            System.out.println("result.get(\"status\") = null "+htmlResult.errorInfo);
                         }
                     } else {
                         System.out.println(htmlResult.errorInfo);
