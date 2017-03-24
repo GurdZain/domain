@@ -43,8 +43,10 @@ public class DoMainService implements IMainService{
                                 if (result.getString("price") != null) {
                                     newDomain.setPrice(Double.valueOf(result.getString("price")));
                                 }
-                                if (result.getString("is_premium") != null) {
+                                if(result.get("is_premium") != null) {
                                     newDomain.setPremium(result.getString("is_premium").equalsIgnoreCase("true") ? 1 : 0);
+                                } else {
+                                    newDomain.setPremium(0);
                                 }
                                 domainDao.insertNewDomain(newDomain);
                                 System.out.println("    get available host:" + last + ".com, price=" + newDomain.getPrice() + ",is_premium:" + (newDomain.getPremium() == 1));
